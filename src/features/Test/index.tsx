@@ -16,7 +16,7 @@ export const Test = () => {
       : 'finish';
 
   return (
-    <div className="min-h-[calc(100vh-3rem)] bg-blue-900 sm:px-24 px-8 py-8 sm:py-16">
+    <div className="min-h-[calc(100vh-3rem)] bg-blue-900 px-8 py-8 sm:px-24 sm:py-16">
       {status === 'intro' && <TestIntro />}
       {status === 'in-progress' && <MultipleChoice />}
       {status === 'finish' && <TestEnd />}

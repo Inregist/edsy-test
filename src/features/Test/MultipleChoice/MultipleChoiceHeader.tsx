@@ -6,9 +6,9 @@ export const MultipleChoiceHeader = () => {
 
   return (
     <div>
-      <div className="xs:flex-row flex flex-col justify-between text-blue-600">
+      <div className="flex flex-col justify-between text-blue-600 xs:flex-row">
         <p className="font-medium">Multiple Choice</p>
-        <div className="xs:my-0 my-2 flex items-center justify-center rounded-full bg-blue-500/20 px-4 py-1 text-sm font-medium">
+        <div className="my-2 flex items-center justify-center rounded-full bg-blue-500/20 px-4 py-1 text-sm font-medium xs:my-0">
           <ClockSVG className="mr-2 text-blue-700" width="16" height="16" />
           Time remaining {timer.timeText}
         </div>

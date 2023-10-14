@@ -9,7 +9,7 @@ export const MultipleChoice = () => {
   const questionNo = questionIdx + 1;
 
   return (
-    <div className="min-h-[8rem] rounded-xl bg-white px-8 pb-8 sm:pt-12 pt-6">
+    <div className="min-h-[8rem] rounded-xl bg-white px-8 pb-8 pt-6 sm:pt-12">
       <MultipleChoiceHeader />
       <h2 className="mb-2 mt-6 text-xl font-medium">
         Question {questionNo}/{questions.length}
