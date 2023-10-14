@@ -1,3 +1,5 @@
+import { useCountdown } from '@/hooks/useCountdown';
+import { formatTime } from '@/utils/timer';
 import {
   PropsWithChildren,
   createContext,
@@ -35,10 +37,15 @@ const useInternalHook = () => {
   const [questionIdx, setQuestionIdx] = useState(-1);
   const [questions, setQuestions] = useState([] as Question[]);
   const ansCount = useRef(0);
+  const questionRef = useRef<QuestionResponse>();
+
+  const timer = useCountdown();
 
   const fetchQuestion = async () => {
     const res = await fetch(`/api/exams/1`);
     const data: QuestionResponse = await res.json();
+
+    questionRef.current = data;
     setQuestions(data?.questions);
   };
 
@@ -55,6 +62,12 @@ const useInternalHook = () => {
       }));
     });
     ansCount.current = 0;
+
+    const timeLimit = questionRef.current?.timeLimit ?? 0;
+    timer.start(timeLimit, () => {
+      alert('Time is up!');
+      setQuestionIdx(questions.length);
+    });
   };
   const next = () => setQuestionIdx((prev) => prev + 1);
   const back = () => setQuestionIdx((prev) => prev - 1);
@@ -90,6 +103,8 @@ const useInternalHook = () => {
 
   return {
     questions,
+    timeLimit: formatTime(questionRef.current?.timeLimit),
+    timer,
     questionIdx,
     start,
     next,
