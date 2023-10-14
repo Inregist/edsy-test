@@ -41,17 +41,13 @@ const useInternalHook = () => {
 
   const timer = useCountdown();
 
-  const fetchQuestion = async () => {
-    const res = await fetch(`/api/exams/1`);
+  const fetchQuestion = async (id: string) => {
+    const res = await fetch(`/api/exams/${id}`);
     const data: QuestionResponse = await res.json();
 
     questionRef.current = data;
     setQuestions(data?.questions);
   };
-
-  useEffect(() => {
-    fetchQuestion();
-  }, []);
 
   const start = () => {
     setQuestionIdx(0);
@@ -110,6 +106,7 @@ const useInternalHook = () => {
     next,
     back,
     submit,
+    fetchQuestion,
     getQuestion,
     MakeAnswer,
     ansCount: ansCount.current,

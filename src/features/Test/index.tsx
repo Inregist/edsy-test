@@ -4,9 +4,14 @@ import { TestIntro } from './TestIntro';
 import { useTestContext } from './TestContext';
 import { MultipleChoice } from './MultipleChoice';
 import { TestEnd } from './TestEnd';
+import { useEffect } from 'react';
 
 export const Test = () => {
-  const { questionIdx, questions } = useTestContext();
+  const { fetchQuestion, questionIdx, questions } = useTestContext();
+
+  useEffect(() => {
+    fetchQuestion('1');
+  }, []);
 
   const status =
     questionIdx === -1
